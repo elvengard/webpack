@@ -8,8 +8,9 @@
 
 > * npm install webpack -g
 
-推荐全局安装webpack，在linux环境下如果报错，可以检查是否以root的身份去运行，全局安装需要用到管理员权限。
+推荐全局安装webpack，在linux环境下如果报错，可以检查是否以root的身份去运行，全局安装需要用到管理员权限。同时还要全局安装gulp和webpack-dev-server
 
 
-
+> * npm install webpack-dev-server -g
+> * npm install gulp -g
 
