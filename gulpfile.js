@@ -100,7 +100,7 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('watch', function (done) {
-    gulp.watch('src/**/*', ['lessmin', 'build-js', 'fileinclude'])
+    gulp.watch('src/**/*', ['lessmin', 'fileinclude'])
         .on('end', done);
 });
 
@@ -142,3 +142,4 @@ gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
 
 //开发
 gulp.task('dev', ['connect', 'copy:images', 'fileinclude', 'lessmin', 'build-js', 'watch', 'open']);
+
