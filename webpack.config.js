@@ -46,5 +46,14 @@ module.exports = {
                 warnings: false
             }
         })
-    ]
+    ],
+    module:{
+		loaders: [
+            {
+                exclude:["./node_modules/","./src/css"],
+                test: /\.less$/,
+                loader: "style!css!less!"
+            }
+        ]
+	}
 };
