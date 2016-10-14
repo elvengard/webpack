@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/elvengard/webpack#readme",
   "devDependencies": {
-    "react": "^15.3.2"
+    "css-loader": "^0.25.0",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "react": "^15.3.2",
+    "style-loader": "^0.13.1"
   }
 }

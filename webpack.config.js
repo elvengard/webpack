@@ -5,5 +5,11 @@ module.exports = {
 		filename:"output.js"
 	},
 	module:{
+		loaders: [
+            {
+                test: /\.less$/,
+                loader: "style!css!less"
+            }
+        ]
 	}
 }
