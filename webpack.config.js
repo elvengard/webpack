@@ -41,11 +41,12 @@ module.exports = {
     },
     plugins: [
         new CommonsChunkPlugin('common.js'),
-        new uglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
+        //压缩js代码
+        // new uglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // })
     ],
     module:{
 		loaders: [
