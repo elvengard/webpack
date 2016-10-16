@@ -48,6 +48,16 @@ gulp.task('lessmin', function (done) {
         .on('end', done);
 });
 
+//编译less
+gulp.task('testLess', function () {
+    gulp.src(['src/style/*.less']) //多个文件以数组形式传入
+        .pipe(less())
+        .pipe(gulp.dest('dist/style/')); //将会在src/css下生成index.css以及detail.css 
+});
+
+
+
+
 //将js加上10位md5,并修改html中的引用路径，该动作依赖build-js
 gulp.task('md5:js', ['build-js'], function (done) {
     gulp.src('dist/js/*.js')
@@ -141,5 +151,4 @@ gulp.task("build-js", ['fileinclude'], function(callback) {
 gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
 
 //开发
-gulp.task('dev', ['connect', 'copy:images', 'fileinclude', 'lessmin', 'build-js', 'watch', 'open']);
-
+gulp.task('dev', ['connect', 'copy:images', 'fileinclude',"lessmin", 'testLess', 'build-js', 'watch', 'open']);
