@@ -3,10 +3,10 @@ var ReactDom = require("react-dom");
 
 
 module.exports = function(opt){
-    
-	ReactDOM.render(
-        <h1>Hello, world!</h1>,
+	ReactDom.render(
+        <h1>Hello, world</h1>,
         document.getElementById('example')
     );
+    console.log("155256");
 }
 

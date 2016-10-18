@@ -18,7 +18,7 @@ function getEntry() {
             files[matchs[1]] = path.resolve(srcDir, 'js', item);
         }
     });
-    console.log(JSON.stringify(files));
+    //console.log(JSON.stringify(files));
     return files;
 }
 
@@ -53,8 +53,21 @@ module.exports = {
             {
                 exclude:["./node_modules/","./src/css","./src/style"],
                 test: /\.less$/,
-                loader: "style!css!less!"
+                loader: ["style","css","less"]
+            },
+            { 
+                test: /\.jsx$/,         // Match both .js and .jsx files
+                exclude: /node_modules/, 
+                loader: ["babel"],
+                query:
+                      {
+                        presets:['react','es2015']
+                      }
             }
         ]
-	}
+	},
+    devServer:{
+        hot:true,
+        inline:true
+    }
 };

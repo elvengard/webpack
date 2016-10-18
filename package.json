@@ -3,6 +3,11 @@
   "version": "2.0.0",
   "author": "fwon",
   "devDependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-core": "^6.17.0",
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-react": "^6.16.0",
     "css-loader": "^0.25.0",
     "gulp": "^3.8.10",
     "gulp-clean": "0.3.1",
@@ -19,6 +24,8 @@
     "gulp-util": "~2.2.9",
     "gulp-watch": "4.1.0",
     "less-loader": "^2.2.3",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
     "webpack": "~1.0.0-beta6"
   },
