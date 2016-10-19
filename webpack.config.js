@@ -47,6 +47,7 @@ module.exports = {
         //         warnings: false
         //     }
         // })
+        new webpack.HotModuleReplacementPlugin()
     ],
     module:{
 		loaders: [
@@ -66,8 +67,7 @@ module.exports = {
             }
         ]
 	},
-    devServer:{
-        hot:true,
-        inline:true
-    }
+    devServer: { inline: true,
+                 hot: true
+                }
 };
