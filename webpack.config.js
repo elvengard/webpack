@@ -48,7 +48,7 @@ module.exports = {
         //         warnings: false
         //     }
         // })
-        new webpack.HotModuleReplacementPlugin()
+       
     ],
     module:{
 		loaders: [
