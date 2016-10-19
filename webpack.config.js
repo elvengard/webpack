@@ -41,6 +41,7 @@ module.exports = {
     },
     plugins: [
         new CommonsChunkPlugin('common.js'),
+        new webpack.HotModuleReplacementPlugin()
         //压缩js代码
         // new uglifyJsPlugin({
         //     compress: {
@@ -67,7 +68,7 @@ module.exports = {
         ]
 	},
     devServer:{
-        hot:true,
+        hot:false,
         inline:true
     }
 };
