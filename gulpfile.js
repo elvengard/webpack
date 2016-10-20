@@ -39,7 +39,7 @@ gulp.task('copy:images', function (done) {
 
 //复制CSS公共文件
 gulp.task('publicStyle', function (done) {
-    gulp.src(['src/style/**/*.css']).pipe(gulp.dest('dist/style/')).on('end', done);
+    gulp.src(['src/style/**/*.css','src/style/*/*/*.png','src/style/*/*/*.*f*']).pipe(gulp.dest('dist/style/')).on('end', done);
 });
 
 //复制bootstrap的JS公共组件
