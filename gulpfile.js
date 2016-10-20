@@ -37,6 +37,17 @@ gulp.task('copy:images', function (done) {
     gulp.src(['src/images/**/*']).pipe(gulp.dest('dist/images')).on('end', done);
 });
 
+//复制CSS公共文件
+gulp.task('publicStyle', function (done) {
+    gulp.src(['src/style/**/*.css']).pipe(gulp.dest('dist/style/')).on('end', done);
+});
+
+//复制bootstrap的JS公共组件
+gulp.task('jsbootstrap', function (done) {
+    gulp.src(['src/js/bootstrap/*.js']).pipe(gulp.dest('dist/js/bootstrap')).on('end', done);
+});
+
+
 //压缩合并css, css中既有自己写的.less, 也有引入第三方库的.css
 gulp.task('lessmin', function (done) {
     gulp.src(['src/css/main.less', 'src/css/*.css'])
@@ -110,7 +121,7 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('watch', function (done) {
-    gulp.watch('src/**/*', ['lessmin', 'fileinclude'])
+    gulp.watch('src/**/*', ['lessmin', 'fileinclude','testLess'])
         .on('end', done);
 });
 
@@ -152,3 +163,6 @@ gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
 
 //开发
 gulp.task('dev', ['connect', 'copy:images', 'fileinclude',"lessmin", 'testLess', 'build-js', 'watch', 'open']);
+
+
+gulp.task('dev2', ['connect', 'copy:images', 'fileinclude',"publicStyle", 'testLess', 'build-js', 'jsbootstrap','watch', 'open']);
