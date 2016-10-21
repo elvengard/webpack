@@ -39,7 +39,7 @@ gulp.task('copy:images', function (done) {
 
 //复制CSS公共文件
 gulp.task('publicStyle', function (done) {
-    gulp.src(['src/style/**/*.css','src/style/*/*/*.png','src/style/*/*/*.*f*']).pipe(gulp.dest('dist/style/')).on('end', done);
+    gulp.src(['src/style/**/*.css','src/style/*/*/*.png','src/style/*/*.*f*']).pipe(gulp.dest('dist/style/')).on('end', done);
 });
 
 //复制bootstrap的JS公共组件
@@ -48,25 +48,12 @@ gulp.task('jsbootstrap', function (done) {
 });
 
 
-//压缩合并css, css中既有自己写的.less, 也有引入第三方库的.css
-gulp.task('lessmin', function (done) {
-    gulp.src(['src/css/main.less', 'src/css/*.css'])
-        .pipe(less())
-        //这里可以加css sprite 让每一个css合并为一个雪碧图
-        //.pipe(spriter({}))
-        .pipe(concat('style.min.css'))
-        .pipe(gulp.dest('dist/css/'))
-        .on('end', done);
-});
-
 //编译less
 gulp.task('testLess', function () {
     gulp.src(['src/style/*.less']) //多个文件以数组形式传入
         .pipe(less())
         .pipe(gulp.dest('dist/style/')); //将会在src/css下生成index.css以及detail.css 
 });
-
-
 
 
 //将js加上10位md5,并修改html中的引用路径，该动作依赖build-js
@@ -97,22 +84,7 @@ gulp.task('fileinclude', function (done) {
         // .pipe(connect.reload())
 });
 
-//雪碧图操作，应该先拷贝图片并压缩合并css
-gulp.task('sprite', ['copy:images', 'lessmin'], function (done) {
-    var timestamp = +new Date();
-    gulp.src('dist/css/style.min.css')
-        .pipe(spriter({
-            spriteSheet: 'dist/images/spritesheet' + timestamp + '.png',
-            pathToSpriteSheetFromCSS: '../images/spritesheet' + timestamp + '.png',
-            spritesmithOptions: {
-                padding: 10
-            }
-        }))
-        .pipe(base64())
-        .pipe(cssmin())
-        .pipe(gulp.dest('dist/css'))
-        .on('end', done);
-});
+
 
 gulp.task('clean', function (done) {
     gulp.src(['dist'])
@@ -121,7 +93,7 @@ gulp.task('clean', function (done) {
 });
 
 gulp.task('watch', function (done) {
-    gulp.watch('src/**/*', ['lessmin', 'fileinclude','testLess'])
+    gulp.watch('src/**/*', ['fileinclude','testLess'])
         .on('end', done);
 });
 
@@ -144,7 +116,6 @@ gulp.task('open', function (done) {
 });
 
 var myDevConfig = Object.create(webpackConfig);
-
 var devCompiler = webpack(myDevConfig);
 
 //引用webpack对js进行操作
@@ -164,5 +135,36 @@ gulp.task('default', ['connect', 'fileinclude', 'md5:css', 'md5:js', 'open']);
 //开发
 gulp.task('dev', ['connect', 'copy:images', 'fileinclude',"lessmin", 'testLess', 'build-js', 'watch', 'open']);
 
+//newdevelop
+gulp.task('dev2', ["publicStyle", 'testLess','jsbootstrap','connect', 'copy:images', 'fileinclude','build-js', 'watch', 'open']);
 
-gulp.task('dev2', ['connect', 'copy:images', 'fileinclude',"publicStyle", 'testLess', 'build-js', 'jsbootstrap','watch', 'open']);
+
+
+//压缩合并css, css中既有自己写的.less, 也有引入第三方库的.css
+// gulp.task('lessmin', function (done) {
+//     gulp.src(['src/css/main.less', 'src/css/*.css'])
+//         .pipe(less())
+//         //这里可以加css sprite 让每一个css合并为一个雪碧图
+//         //.pipe(spriter({}))
+//         .pipe(concat('style.min.css'))
+//         .pipe(gulp.dest('dist/css/'))
+//         .on('end', done);
+// });
+
+
+//雪碧图操作，应该先拷贝图片并压缩合并css
+// gulp.task('sprite', ['copy:images', 'lessmin'], function (done) {
+//     var timestamp = +new Date();
+//     gulp.src('dist/css/style.min.css')
+//         .pipe(spriter({
+//             spriteSheet: 'dist/images/spritesheet' + timestamp + '.png',
+//             pathToSpriteSheetFromCSS: '../images/spritesheet' + timestamp + '.png',
+//             spritesmithOptions: {
+//                 padding: 10
+//             }
+//         }))
+//         .pipe(base64())
+//         .pipe(cssmin())
+//         .pipe(gulp.dest('dist/css'))
+//         .on('end', done);
+// });

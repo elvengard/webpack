@@ -9,8 +9,5 @@ var app1 = new app({
 var react = require("./publicreact/demo.jsx");
 
 var reactDemo1 = new react();
-
-
 var reactDemo2 = new react();
-
 var reactDemo3 = new react();
